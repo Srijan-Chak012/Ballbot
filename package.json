@@ -1,0 +1,25 @@
+{
+  "name": "ballbot",
+  "version": "1.0.0",
+  "description": "A simple bot to show football stats after each of your favourite club's games, help you understand the game of football better!",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srijan-Chak012/discordbot.git"
+  },
+  "author": "Srijan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srijan-Chak012/discordbot/issues"
+  },
+  "homepage": "https://github.com/Srijan-Chak012/discordbot#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "node-fetch": "^2.6.1"
+  }
+}
