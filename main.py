@@ -5,6 +5,7 @@ import json
 import random
 import reply
 import gif
+import help
 
 client = discord.Client()
 
@@ -17,5 +18,7 @@ async def on_message(message):
         await message.channel.send(reply.to_send(message.content))
     elif message.content.startswith('$gif'):
         await message.channel.send(gif.GIF(message.content))
+    elif message.content.startswith('$help'):
+        await message.channel.send(help.r_help())
 
 client.run('ODg0MTQwMjM2MjU3NDk3MDg4.YTUJwg.3o_7FjNYusz3yQSHmyT26s8Y1PQ')
