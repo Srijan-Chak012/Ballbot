@@ -11,7 +11,7 @@ import penalty
 
 client = discord.Client()
 
-
+print("Bot up!")
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -23,6 +23,11 @@ async def on_message(message):
     elif message.content.startswith('$help'):
         await message.channel.send(help.r_help())
     elif message.content.startswith('$penalty'):
-        await penalty.pen(message.channel)
+        await penalty.pen(message.channel, message.author)
+
+@client.event
+async def on_reaction_add(reaction, user):
+    if reaction.emoji == "🏃":
+
 
 client.run('ODg0MTQwMjM2MjU3NDk3MDg4.YTUJwg.3o_7FjNYusz3yQSHmyT26s8Y1PQ')
