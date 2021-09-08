@@ -15,8 +15,14 @@ user = -1
 
 async def shoot(channel):
     react, user = await client.wait_for('reaction_add')
-    print(react)
-    print(user)
+    while str(user.id) == "884140236257497088":
+        # print("once")
+        react, user = await client.wait_for('reaction_add')
+    await channel.send(user.mention + "reacted with " + react.emoji)
+    if str(user.id) != user:
+        return
+
+
 
 async def prepare(channel, user):
     await channel.send('React to this message with the side you want to shoot towards:')
@@ -25,8 +31,6 @@ async def prepare(channel, user):
     await send.add_reaction("\N{Upwards Black Arrow}")
     await send.add_reaction("\N{Black Rightwards Arrow}")
     await shoot(channel)
-
-
 
 async def pen(channel, author):
     global in_pen
@@ -57,6 +61,4 @@ async def on_message(message):
 # @client.event
 # async def on_reaction_add(reaction, user):
 #     if reaction.emoji == "🏃":
-
-
 client.run('ODg0MTQwMjM2MjU3NDk3MDg4.YTUJwg.3o_7FjNYusz3yQSHmyT26s8Y1PQ')
