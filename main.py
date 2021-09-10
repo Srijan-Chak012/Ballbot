@@ -50,9 +50,9 @@ async def defend(channel):
 
     await channel.send(str(user_defense) + " " + str(to_score))
     if user_defense == to_score:
-        await channel.send("You suck")
-    else:
         await channel.send("You do not suck yet")
+    else:
+        await channel.send("You suck")
         bot_score += 1
     if user_defense == 0:
         d1 += x
@@ -110,7 +110,7 @@ async def shoot(channel):
     await channel.send("l1 and l2: " + str(l1) + " " + str(l2))
 
 async def prepare(channel, user):
-    global l1, l2, x
+    global l1, l2, d1, d2, x
     l1 = 33.33
     l2 = 66.66
     d1 = 33.33
