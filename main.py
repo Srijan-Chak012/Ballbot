@@ -19,7 +19,6 @@ d1 = -1
 d2 = -1
 x = -1
 
-
 async def defend(channel):
     react, duser = await client.wait_for('reaction_add')
     while str(duser.id) == "884140236257497088":
@@ -62,7 +61,7 @@ async def defend(channel):
     elif user_defense == 2:
         d2 -= x
 
-    await channel.send("d1 and d2: " + str(d1) + " " + str(d2))
+    # await channel.send("d1 and d2: " + str(d1) + " " + str(d2))
 
 
 async def shoot(channel):
@@ -107,16 +106,11 @@ async def shoot(channel):
     elif user_shot == 2:
         l2 -= x
 
-    await channel.send("l1 and l2: " + str(l1) + " " + str(l2))
+    # await channel.send("l1 and l2: " + str(l1) + " " + str(l2))
 
-async def prepare(channel, user):
-    global l1, l2, d1, d2, x
-    l1 = 33.33
-    l2 = 66.66
-    d1 = 33.33
-    d2 = 66.66
-    x = random.uniform(-2, 5)
-    for i in range(10):
+async def sudden_death(channel):
+    while(bot_score == score):
+        await channel.send('You are now in SUDDEN DEATH, score and block to win the match!')
         await channel.send('React to this message with the side you want to shoot towards:')
         send = await channel.send(file=discord.File('./penalty.jpg'))
         await send.add_reaction("\N{Leftwards Black Arrow}")
@@ -125,6 +119,7 @@ async def prepare(channel, user):
         await shoot(channel)
         await channel.send("Your score: " + str(score))
         await channel.send("Bot score: " + str(bot_score))
+
         await channel.send('React to this message with the side you want your goalkeeper to defend towards:')
         send = await channel.send(file=discord.File('./keeper.jpg'))
         await send.add_reaction("\N{Leftwards Black Arrow}")
@@ -134,6 +129,53 @@ async def prepare(channel, user):
         await channel.send("Your score: " + str(score))
         await channel.send("Bot score: " + str(bot_score))
 
+    if score > bot_score:
+        await channel.send('Congratulations! You have won the SUDDEN DEATH! :partying_face:')
+
+    elif bot_score > score:
+        await channel.send('LMAO, you lost against a bot in the SUDDEN DEATH! :rofl:')
+
+async def prepare(channel, user):
+    global l1, l2, d1, d2, x
+    l1 = 33.33
+    l2 = 66.66
+    d1 = 33.33
+    d2 = 66.66
+    x = random.uniform(-2, 5)
+    for i in range(5):
+        await channel.send('React to this message with the side you want to shoot towards:')
+        send = await channel.send(file=discord.File('./penalty.jpg'))
+        await send.add_reaction("\N{Leftwards Black Arrow}")
+        await send.add_reaction("\N{Upwards Black Arrow}")
+        await send.add_reaction("\N{Black Rightwards Arrow}")
+        await shoot(channel)
+        await channel.send("Your score: " + str(score))
+        await channel.send("Bot score: " + str(bot_score))
+        diff = abs(score - bot_score)
+        if diff > (5-i):
+            break
+
+        await channel.send('React to this message with the side you want your goalkeeper to defend towards:')
+        send = await channel.send(file=discord.File('./keeper.jpg'))
+        await send.add_reaction("\N{Leftwards Black Arrow}")
+        await send.add_reaction("\N{Upwards Black Arrow}")
+        await send.add_reaction("\N{Black Rightwards Arrow}")
+        await defend(channel)
+        await channel.send("Your score: " + str(score))
+        await channel.send("Bot score: " + str(bot_score))
+        diff1 = abs(bot_score-score)
+        if diff1 > (5-i):
+            break
+    
+    if score > bot_score:
+        await channel.send('Congratulations! You have won! :partying_face:')
+
+    elif bot_score > score:
+        await channel.send('LMAO, you lost against a bot :rofl:')
+    
+    else:
+        await channel.send('Sudden Death Time')
+        sudden_death(channel)
 
 async def pen(channel, author):
     global in_pen
