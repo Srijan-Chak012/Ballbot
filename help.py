@@ -1,5 +1,3 @@
-
-
 def r_help():
    return '''
     These are the supported commands:

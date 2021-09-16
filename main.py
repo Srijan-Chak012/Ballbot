@@ -8,6 +8,11 @@ import gif
 import time
 import help
 
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
+
 client = discord.Client()
 
 in_pen = False
@@ -212,4 +217,4 @@ async def on_message(message):
 # @client.event
 # async def on_reaction_add(reaction, user):
 #     if reaction.emoji == "🏃":
-client.run('ODg0MTQwMjM2MjU3NDk3MDg4.YTUJwg.3o_7FjNYusz3yQSHmyT26s8Y1PQ')
+client.run(TOKEN)
