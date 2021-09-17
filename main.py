@@ -1,10 +1,12 @@
 import discord
 import os
+from dotenv import load_doten
 import requests
 import json
 import random
 import reply
 import gif
+from datetime import datetime
 import time
 import help
 
@@ -12,8 +14,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-
+SEED = os.getenv('TENORKEY')
 client = discord.Client()
+random.seed(datetime.now())
+
+
+def GIF(message):
+    if len(message) == 4:
+        message = "$gif love"
+    if message[4] != " ":
+        return "Command Not found: Please add a space after $gif"
+    url = 'https://api.tenor.com/v1/search?q='+ message[5:] +'&key=' + SEED + '&contentfilter=high'
+    r = requests.get(url)
+    data = r.json()
+    results = data["results"]
+    index = random.choice(range(0, len(results)))
+    return results[index]["url"]
+
 
 in_pen = False
 score = 0
