@@ -35,7 +35,7 @@ $reply <name>
 ```
 where name is the name of the player you want to know about.
 
-##Penalty:
+## Penalty:
 A penalty shootout against the bot, the player first plays shoots and then plays as the goalkeeper to defend their goal. The ball can go one of 3 different ways and the player must shoot at a side where the bot keeper does not go and must defend on the side where the bot player shoots.
 The input is taken as reactions on the pictures displayed by the bot on the channel. Win against the bot and show well you'd perform in an actual penalty-shootout! 
 The command is run as:
