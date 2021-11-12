@@ -1,7 +1,7 @@
 # Ballbot
 A discord bot related to football, this bot enables you to have fun and gets you initiated with the game of football. You can play the penalty shootout against the bot or hear its opinions on some players!
 
-# Music-notes-detection
+# Functionalities
 This bot has 4 functionalities to it:
 1. Help
 2. Gif 
